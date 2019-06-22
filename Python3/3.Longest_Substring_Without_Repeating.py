@@ -4,7 +4,15 @@ class Solution:
             return len(s)
         total = 1
         i = j = 0
-        contains = set()
+        contains = dict()
+        for j in range(len(s)):
+            if s[j] in contains.keys():
+                i = max(contains[s[j]], i)
+            total = max(j - i + 1, total)
+            contains[s[j]] = j + 1
+        return total
+
+        '''
         contains.add(s[0])
 
         while j < len(s) - 1:
@@ -22,4 +30,5 @@ class Solution:
                     else:
                         contains.remove(s[i])
                         i += 1
+        '''
         return total
